@@ -34,6 +34,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/commons-lang3-3.7.jar')
 
-    // 安卓低版本标题浸入效果！
-    api 'com.gyf.barlibrary:barlibrary:2.3.0'
+
 }
