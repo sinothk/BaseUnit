@@ -26,17 +26,32 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.sinothk.comm.BuildConfig.DEBUG;
+
 /**
  * Company 汉合瑞信.
  * Created by 梁玉涛 on 2015/9/22.
  */
-public class AppUtil extends OUtil {
+public class AppUtil {
+
+    private static Context mContext;
+
+    public static void init(Context context) {
+        mContext = context;
+    }
+
 
     /**
      * 获取应用程序版本名称信息
      */
     public static String getAppVersionName() {
-        if (isDisable()) return "V 1.0";
+
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return null;
+        }
 
         try {
             PackageManager pm = mContext.getPackageManager();
@@ -52,7 +67,12 @@ public class AppUtil extends OUtil {
      * 获取app版本号
      */
     public static int getAppVersionCode() {
-        if (isDisable()) return 0;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return 0;
+        }
 
         try {
             PackageManager pm = mContext.getPackageManager();
@@ -68,7 +88,12 @@ public class AppUtil extends OUtil {
      * 强制隐藏输入法键盘
      */
     public static void hideInput(View view) {
-        if (isDisable()) return;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
 
         InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -78,7 +103,12 @@ public class AppUtil extends OUtil {
      * 切换软键盘的状态 如当前为收起变为弹出,若当前为弹出变为收起
      */
     private void toggleInput() {
-        if (isDisable()) return;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
 
         InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -90,7 +120,12 @@ public class AppUtil extends OUtil {
      * @return
      */
     public static boolean isDebug() {
-        if (isDisable()) return false;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return false;
+        }
 
         try {
             ApplicationInfo info = mContext.getApplicationInfo();
@@ -117,7 +152,12 @@ public class AppUtil extends OUtil {
      * @param file 文件
      */
     public static void installApp(File file) {
-        if (isDisable()) return;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
@@ -131,7 +171,12 @@ public class AppUtil extends OUtil {
      * @param packageName 包名
      */
     public void uninstallApp(String packageName) {
-        if (isDisable()) return;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
 
         Intent intent = new Intent(Intent.ACTION_DELETE);
         intent.setData(Uri.parse("package:" + packageName));
@@ -259,7 +304,12 @@ public class AppUtil extends OUtil {
      * @return 当前应用的AppInfo
      */
     public static AppUtil.AppInfo getAppInfo() {
-        if (isDisable()) return null;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return null;
+        }
 
         PackageManager pm = mContext.getPackageManager();
         PackageInfo pi = null;
@@ -299,7 +349,12 @@ public class AppUtil extends OUtil {
      * @return 所有已安装的AppInfo列表
      */
     public static List<AppInfo> getAllAppsInfo() {
-        if (isDisable()) return null;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return null;
+        }
 
         List<AppInfo> list = new ArrayList<>();
         PackageManager pm = mContext.getPackageManager();
@@ -320,7 +375,12 @@ public class AppUtil extends OUtil {
      * @return 意图
      */
     private static Intent getIntentByPackageName(String packageName) {
-        if (isDisable()) return null;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return null;
+        }
 
         return mContext.getPackageManager().getLaunchIntentForPackage(packageName);
     }
@@ -342,7 +402,12 @@ public class AppUtil extends OUtil {
      * @return {@code true}: 打开成功<br>{@code false}: 打开失败
      */
     public static boolean openAppByPackageName(String packageName) {
-        if (isDisable()) return false;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return false;
+        }
 
         Intent intent = getIntentByPackageName(packageName);
         if (intent != null) {
@@ -358,7 +423,12 @@ public class AppUtil extends OUtil {
      * @param packageName 包名
      */
     public static void openAppInfo(String packageName) {
-        if (isDisable()) return;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
 
         Intent intent = new Intent();
         intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -372,7 +442,12 @@ public class AppUtil extends OUtil {
      * @param info 分享信息
      */
     public static void shareAppInfo(String info) {
-        if (isDisable()) return;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
@@ -388,7 +463,7 @@ public class AppUtil extends OUtil {
      * @return {@code true}: 后台<br>{@code false}: 前台
      */
     public static boolean isAppBackground() {
-        if (isDisable()) return false;
+        if (mContext == null) return false;
 
         ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         @SuppressWarnings("deprecation")

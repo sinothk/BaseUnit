@@ -7,11 +7,14 @@ import android.util.Log;
 
 import java.util.Map;
 
+import static com.sinothk.comm.BuildConfig.DEBUG;
+
 /**
  * 首选项设置
  */
-public class PreferUtil extends OUtil{
+public class PreferUtil{
 
+    private static Context mContext;
     private static String TAG = "Preferences";
 
     public static void init(Context context) {
@@ -104,7 +107,12 @@ public class PreferUtil extends OUtil{
     }
 
     private static void initTip() {
-        Log.e(TAG, "使用OPreferUtil的方法前，请先调用 OPreferUtil.init(Context context)");
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null或参数为null, 请在调用前初始化：init(context)");
+            }
+            return;
+        }
     }
 
     /**

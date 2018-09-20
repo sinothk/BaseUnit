@@ -34,12 +34,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.sinothk.comm.BuildConfig.DEBUG;
+
 /**
  * Created by LYT on 2017/8/11.
  * 功能：
  */
 
-public class PhoneUtil extends OUtil {
+public class PhoneUtil{
+
+    private static Context mContext;
+
+    public static void init(Context context) {
+        mContext = context;
+    }
 
     public static int getPhoneWidth(Context mContext) {
         WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
@@ -442,7 +450,12 @@ public class PhoneUtil extends OUtil {
      * 判断当前App处于前台还是后台状态
      */
     public static boolean isApplicationBackground() {
-        if (isDisable()) return false;
+        if (mContext == null) {
+            if (DEBUG) {
+                throw new NullPointerException("mContext == null");
+            }
+            return false;
+        }
 
         ActivityManager am = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
         @SuppressWarnings("deprecation")

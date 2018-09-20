@@ -11,7 +11,7 @@ import java.util.Date;
  *  @Update:
  * <pre>
  */
-public class EmailUtil extends OUtil {
+public class EmailUtil{
 
     public static void main(String[] args) throws Exception {
 

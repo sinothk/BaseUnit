@@ -98,12 +98,18 @@ public class DateUtil {
     /**
      * 得到现在时间前的几天日期，用来得到需要删除的日志文件名
      */
-    public static Date getDateBeforeToday(int XLOG_FILE_SAVE_DAYS) {
+    /**
+     * 推算几天前是几月几号？
+     *
+     * @param days
+     * @return
+     */
+    public static Date getDateBeforeToday(int days) {
         Date nowtime = new Date();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(nowtime);
-        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - XLOG_FILE_SAVE_DAYS);
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - days);
         // 2014-09-23 - 7 => 2014-09-16号
         return calendar.getTime();
     }
@@ -157,7 +163,9 @@ public class DateUtil {
 //    }
 
     public static String getFriendlyDate(Date date) {
+
         if (date == null) date = new Date();
+
         Date now = new Date();
 
         long ys = DateUtils.truncate(now, Calendar.YEAR).getTime();
@@ -218,15 +226,15 @@ public class DateUtil {
      * @param birthday
      * @return
      */
-    public static String getAge(Date birthday) {
+    public static int getAge(Date birthday) {
         if (birthday == null) {
             Random rand = new Random();
             int randNum = rand.nextInt(16) + 16;
-            return "" + randNum;
+            return randNum;
         }
 
         long day = (new Date().getTime() - birthday.getTime()) / (24 * 60 * 60 * 1000) + 1;
-        return new DecimalFormat("#").format(day / 365f) + "";
+        return (int) (day / 365);
     }
 
     /**
