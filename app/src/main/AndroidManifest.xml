@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme_Normal_TitleBar">
-        <activity android:name=".titlebar.TitleBarMainActivity">
+        <activity android:name=".CommMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".dpMatch.ScreenMatchDemoActivity" />
+        <activity android:name=".ScreenMatchDemoActivity" />
+
+        <activity android:name=".UtilsDemoActivity" />
     </application>
 
 </manifest>
