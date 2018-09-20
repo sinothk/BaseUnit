@@ -1,8 +1,11 @@
 package com.sinothk.comm.demo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
+import com.sinothk.comm.demo.dpMatch.ScreenMatchDemoActivity;
 import com.sinothk.comm.utils.StringUtil;
 
 public class CommMainActivity extends AppCompatActivity {
@@ -13,5 +16,9 @@ public class CommMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+    }
+
+    public void gotoScreenMatchDemoActivity(View view) {
+        startActivity(new Intent(this, ScreenMatchDemoActivity.class));
     }
 }
