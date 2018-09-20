@@ -20,4 +20,5 @@ public class CommMainActivity extends AppCompatActivity {
     public void gotoUtilsDemoActivity(View view) {
         startActivity(new Intent(this, UtilsDemoActivity.class));
     }
+
 }
