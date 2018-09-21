@@ -23,11 +23,6 @@ CommUnit：包含样式，适配文件，图标，工具类等
   **Util.xx(?);
   
   适配方式：
-	<TextView
-	android:layout_width="@dimen/dp_140"
-	android:layout_height="@dimen/dp_70"
-	android:background="@color/colorPrimary"
-	android:gravity="center"
-	android:text="不同尺寸效果一样"
-	android:textColor="#FFF"
-	android:textSize="@dimen/sp_16"/>
+  dp_70
+  sp_16
+	
