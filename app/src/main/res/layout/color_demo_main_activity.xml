@@ -46,5 +46,10 @@
             android:layout_height="@dimen/dp_16"
             android:src="@drawable/gender_boy_card" />
 
+        <ImageView
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:src="@drawable/health_guide_men_selected_click" />
+
     </LinearLayout>
 </ScrollView>
