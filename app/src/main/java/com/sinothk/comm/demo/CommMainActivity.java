@@ -21,4 +21,7 @@ public class CommMainActivity extends AppCompatActivity {
         startActivity(new Intent(this, UtilsDemoActivity.class));
     }
 
+    public void gotoColorDemoActivity(View view) {
+        startActivity(new Intent(this, ColorDemoActivity.class));
+    }
 }

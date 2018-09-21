@@ -20,6 +20,7 @@
         <activity android:name=".ScreenMatchDemoActivity" />
 
         <activity android:name=".UtilsDemoActivity" />
+        <activity android:name=".ColorDemoActivity" />
 
     </application>
 

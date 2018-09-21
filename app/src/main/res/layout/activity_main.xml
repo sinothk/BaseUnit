@@ -34,5 +34,15 @@
             android:textColor="#FFF"
             android:textSize="@dimen/sp_16" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_7"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:onClick="gotoColorDemoActivity"
+            android:text="字体颜色"
+            android:textColor="#FFF"
+            android:textSize="@dimen/sp_16" />
     </LinearLayout>
 </ScrollView>
