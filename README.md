@@ -15,7 +15,7 @@ CommUnit：包含样式，适配文件，图标，工具类等
 ## Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.sinothk:CommUnit:2.0.0921'
+	        implementation 'com.github.sinothk:CommUnit:2.1.0921'
 	}
 
 # 使用
