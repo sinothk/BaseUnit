@@ -28,4 +28,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //    implementation 'com.github.sinothk:CommUnit:1.1.0726'
     implementation project(':CommUnit')
+//    implementation 'com.github.sinothk:CommUnit:2.1.0921'
+//
+//    // 引入dp适配
+//    api 'com.github.sinothk:AndroidScreenMatch:1.0.0920'
 }
