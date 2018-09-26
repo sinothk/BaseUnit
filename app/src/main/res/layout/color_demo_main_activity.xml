@@ -39,17 +39,17 @@
         <ImageView
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
-            android:src="@drawable/compose_pic_add" />
+            android:src="@drawable/comm_pic_add" />
 
         <ImageView
             android:layout_width="@dimen/dp_16"
             android:layout_height="@dimen/dp_16"
-            android:src="@drawable/gender_boy_card" />
+            android:src="@drawable/comm_sex_male" />
 
         <ImageView
             android:layout_width="@dimen/dp_60"
             android:layout_height="@dimen/dp_60"
-            android:src="@drawable/health_guide_men_selected_click" />
+            android:src="@drawable/comm_sex_woman" />
 
     </LinearLayout>
 </ScrollView>

@@ -27,7 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.github.sinothk:CommUnit:2.2.0921'
-
+    implementation 'com.github.SINOTHK:CommUnit:2.3.0926'
 //    implementation project(':CommUnit')
 }
