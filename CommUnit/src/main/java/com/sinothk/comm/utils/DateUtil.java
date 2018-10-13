@@ -23,17 +23,17 @@ import java.util.Random;
 public class DateUtil {
     static SimpleDateFormat sdf;
 
-    public static void main(String[] args) {
-
-        System.out.println("通过日期对象获得日期字符串2:");
-        String dateStr1 = DateUtil.getDateStrByDate(new Date(), "yyyy-MM-dd HH:mm:ss"); // yyyy年MM月dd日
-        // HH时mm分ss秒
-        System.out.println("t = " + dateStr1);
-
-        System.out.println("通过日期字符串对象获得日期:");
-        Date date = DateUtil.getDateByDateStr("2014-09-18 22:55:33", "yyyy-MM-dd HH:mm:ss");
-        System.out.println("t = " + date.toString());
-    }
+//    public static void main(String[] args) {
+//
+//        System.out.println("通过日期对象获得日期字符串2:");
+//        String dateStr1 = DateUtil.getDateStrByDate(new Date(), "yyyy-MM-dd HH:mm:ss"); // yyyy年MM月dd日
+//        // HH时mm分ss秒
+//        System.out.println("t = " + dateStr1);
+//
+//        System.out.println("通过日期字符串对象获得日期:");
+//        Date date = DateUtil.getDateByDateStr("2014-09-18 22:55:33", "yyyy-MM-dd HH:mm:ss");
+//        System.out.println("t = " + date.toString());
+//    }
 
     public static String getDateStrByDate(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -161,59 +161,6 @@ public class DateUtil {
 //        // 日期异常
 //        return new SimpleDateFormat("MM月dd日").format(date);
 //    }
-
-    public static String getFriendlyDate(Date date) {
-
-        if (date == null) date = new Date();
-
-        Date now = new Date();
-
-        long ys = DateUtils.truncate(now, Calendar.YEAR).getTime();
-        long ds = DateUtils.truncate(now, Calendar.DAY_OF_MONTH).getTime();
-        long yd = DateUtils.truncate(date, Calendar.DAY_OF_MONTH).getTime();
-
-        long nowTime = now.getTime();
-        long dateTime = date.getTime();
-
-        if (dateTime < ys) {
-            // 不是同一年
-            return new SimpleDateFormat("MM月dd日").format(date);
-        } else {
-            if ((ds - yd) == (48 * 60 * 60 * 1000)) {
-                return new SimpleDateFormat("前天 HH:mm").format(date);
-            }
-
-            if ((ds - yd) == (24 * 60 * 60 * 1000)) {
-                return new SimpleDateFormat("昨天 HH:mm").format(date);
-            }
-
-            if (dateTime < ds) {
-                // 同一年，但不是昨天之前
-                return new SimpleDateFormat("MM月dd日").format(date);
-            }
-
-            if (ds == yd) { //同一天
-                long differentTime = (nowTime - dateTime);
-
-                if (differentTime < ONE_MINUTE) {
-                    // 一分钟内
-                    return "刚刚";
-                } else if (differentTime < ONE_HOUR) {
-                    // 一小时内
-                    return (int) Math.floor(differentTime * 1d / (60 * 1000)) + "分钟前";
-
-                } else if (differentTime < 24 * ONE_HOUR) {
-                    // 一小时内到24小时
-                    return (int) Math.floor(differentTime * 1d / (60 * 60 * 1000)) + "小时前";
-                } else {
-                    return new SimpleDateFormat("今天 HH:mm").format(date);
-                }
-            } else {
-                // 日期异常或异常
-                return new SimpleDateFormat("MM月dd日").format(date);
-            }
-        }
-    }
 
     private static final long ONE_MINUTE = 60000L;
     private static final long ONE_HOUR = 3600000L;
@@ -399,5 +346,96 @@ public class DateUtil {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * =========================================================================================
+     */
+
+    public static String friendlyAfterTime(Date time) {
+        return friendlyAfterTime(time.getTime());
+    }
+
+    public static String friendlyAfterTime(long time) {
+        //获取time距离当前的秒数
+        int ct = (int) ((System.currentTimeMillis() - time) / 1000);
+
+        if (ct == 0) {
+            return "刚刚";
+        }
+
+        if (ct > 0 && ct < 60) {
+            return ct + "秒前";
+        }
+
+        if (ct >= 60 && ct < 3600) {
+            return Math.max(ct / 60, 1) + "分钟前";
+        }
+        if (ct >= 3600 && ct < 86400)
+            return ct / 3600 + "小时前";
+        if (ct >= 86400 && ct < 2592000) { //86400 * 30
+            int day = ct / 86400;
+            return day + "天前";
+        }
+        if (ct >= 2592000 && ct < 31104000) { //86400 * 30
+            return ct / 2592000 + "月前";
+        }
+        return ct / 31104000 + "年前";
+    }
+
+    /**
+     * @param date
+     * @return
+     */
+    public static String getFriendlyDate(Date date) {
+        if (date == null) date = new Date();
+
+        Date now = new Date();
+
+        long ys = DateUtils.truncate(now, Calendar.YEAR).getTime();
+        long ds = DateUtils.truncate(now, Calendar.DAY_OF_MONTH).getTime();
+        long yd = DateUtils.truncate(date, Calendar.DAY_OF_MONTH).getTime();
+
+        long nowTime = now.getTime();
+        long dateTime = date.getTime();
+
+        if (dateTime < ys) {
+            // 不是同一年
+            return new SimpleDateFormat("MM月dd日").format(date);
+        } else {
+            if ((ds - yd) == (48 * 60 * 60 * 1000)) {
+                return new SimpleDateFormat("前天 HH:mm").format(date);
+            }
+
+            if ((ds - yd) == (24 * 60 * 60 * 1000)) {
+                return new SimpleDateFormat("昨天 HH:mm").format(date);
+            }
+
+            if (dateTime < ds) {
+                // 同一年，但不是昨天之前
+                return new SimpleDateFormat("MM月dd日").format(date);
+            }
+
+            if (ds == yd) { //同一天
+                long differentTime = (nowTime - dateTime);
+
+                if (differentTime < ONE_MINUTE) {
+                    // 一分钟内
+                    return "刚刚";
+                } else if (differentTime < ONE_HOUR) {
+                    // 一小时内
+                    return (int) Math.floor(differentTime * 1d / (60 * 1000)) + "分钟前";
+
+                } else if (differentTime < 24 * ONE_HOUR) {
+                    // 一小时内到24小时
+                    return (int) Math.floor(differentTime * 1d / (60 * 60 * 1000)) + "小时前";
+                } else {
+                    return new SimpleDateFormat("今天 HH:mm").format(date);
+                }
+            } else {
+                // 日期异常或异常
+                return new SimpleDateFormat("MM月dd日").format(date);
+            }
+        }
     }
 }
