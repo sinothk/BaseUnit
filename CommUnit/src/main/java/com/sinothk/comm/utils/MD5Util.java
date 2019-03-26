@@ -1,4 +1,4 @@
-package com.sinothk.comm.utils.temp;
+package com.sinothk.comm.utils;
 
 import java.security.MessageDigest;
 
