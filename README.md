@@ -1,5 +1,5 @@
 # 内容
-CommUnit：包含样式，适配文件，图标，工具类等
+CommUnit：单纯包含工具类
 
 # 引入
 ## Step 1. Add the JitPack repository to your build file
@@ -15,16 +15,10 @@ CommUnit：包含样式，适配文件，图标，工具类等
 ## Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.sinothk:CommUnit:2.3.0926'
+	        implementation 'com.github.sinothk:CommUnit:4.0.0408'
 	}
 
 # 使用
   工具类：
   **Util.xx(?);
-  
-  适配方式：
-  dp_70
-  sp_16
 
-  图片:
-  comm_*
