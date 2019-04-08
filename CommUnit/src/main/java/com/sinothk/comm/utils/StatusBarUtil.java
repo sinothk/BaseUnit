@@ -43,6 +43,19 @@ public class StatusBarUtil {
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+
+        // 配合Theme
+//        <!-- Base application theme. -->
+//    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+//        <!-- Customize your theme here. -->
+//        <item name="colorPrimary">@color/colorPrimary</item>
+//        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+//        <item name="colorAccent">@color/colorAccent</item>
+//        <item name="windowActionBar">false</item>
+//        <item name="windowNoTitle">true</item>
+//        <item name="android:screenOrientation">portrait</item>
+//        <item name="android:windowSoftInputMode">stateHidden</item>
+//    </style>
     }
 
     /**
