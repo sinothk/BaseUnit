@@ -8,7 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/CommUnit" />
+            <option value="$PROJECT_DIR$/Jars8Utils" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
